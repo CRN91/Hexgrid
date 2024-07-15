@@ -1,8 +1,13 @@
 # The 6 direction vectors for cube coordinates
 var cube_direction_vectors = [
+#   E                    NE                   NW                                    
 	Vector3i(+1, 0, -1), Vector3i(+1, -1, 0), Vector3i(0, -1, +1), 
+#   W                    SW                   SE
 	Vector3i(-1, 0, +1), Vector3i(-1, +1, 0), Vector3i(0, +1, -1), 
 ]
+
+func axial_to_cube(ax):
+	return Vector3i(ax.x, ax.y, -(ax.x + ax.y))
 
 # Converts axial to odd right offset coordinates
 func axial_to_oddr(hex):
