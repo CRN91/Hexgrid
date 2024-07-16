@@ -14,6 +14,11 @@ func axial_to_oddr(hex):
 	var col = hex.x + (hex.y - (hex.y&1)) / 2
 	var row = hex.y
 	return Vector2i(col, row)
+	
+func oddr_to_axial(hex):
+	var q = hex.x - (hex.y - (hex.y&1)) / 2
+	var r = hex.y
+	return Vector2i(q, r)
 
 # Returns the distance between two cube coordinates
 func cube_distance(a, b):
