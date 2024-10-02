@@ -26,8 +26,17 @@ func cube_distance(a, b):
 	return max(abs(vec.x), abs(vec.y), abs(vec.z)) 
 
 # Returns the neighbouring hex in a given direction
-func cube_neighbor(cube, direction):
+func cube_neighbour(cube, direction):
 	return cube + cube_direction_vectors[direction]
+
+# Returns all axial neighbours of a given axial hex
+func axial_neighbours(axial):
+	var cube = axial_to_cube(axial)
+	var neighbours = []
+	for i in range(6):
+		var cube_n = cube_neighbour(cube, i)
+		neighbours.append(Vector2i(cube_n.x, cube_n.y))
+	return neighbours
 
 # Returns a list of cube coordinates that make up a ring of hexagons
 # of radius distance away from the center
@@ -38,7 +47,7 @@ func cube_ring(center, radius):
 	for i in range(6):
 		for j in range(radius):
 			results.append(hex)
-			hex = cube_neighbor(hex, i)
+			hex = cube_neighbour(hex, i)
 	return results
 
 # Returns a list of cube coordinates that make up a spiral hexagons
